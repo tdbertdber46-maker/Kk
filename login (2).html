@@ -6,183 +6,53 @@
 <title>تسجيل الدخول</title>
 <style>
   :root{
-    --bg1:#f4eefb;
-    --bg2:#efe8fa;
-    --card:#ffffff;
-    --text:#141414;
-    --purple1:#7e2a97;
-    --purple2:#4c1d95;
-    --shadow:0 12px 30px rgba(0,0,0,.10);
+    --bg1:#f4eefb;--bg2:#efe8fa;--card:#ffffff;--text:#141414;
+    --purple1:#7e2a97;--purple2:#4c1d95;--shadow:0 12px 30px rgba(0,0,0,.10);
   }
-
   *{box-sizing:border-box;margin:0;padding:0}
-  body{
-    font-family:"Tajawal",Tahoma,Arial,sans-serif;
-    color:var(--text);
-    min-height:100vh;
-    background:linear-gradient(135deg, var(--bg1), var(--bg2));
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-  }
-
-  header{
-    text-align:center;
-    padding:16px;
-    background:#fff;
-    border-bottom:1px solid #ddd;
-  }
+  body{font-family:"Tajawal",Tahoma,Arial,sans-serif;color:var(--text);min-height:100vh;
+       background:linear-gradient(135deg,var(--bg1),var(--bg2));display:flex;flex-direction:column;justify-content:space-between;}
+  header{text-align:center;padding:16px;background:#fff;border-bottom:1px solid #ddd;}
   header img{height:70px;max-width:100%;}
-
-  main{
-    flex:1;
-    display:grid;
-    place-items:center;
-    padding:20px;
-  }
-
-  .card{
-    width:min(480px, 100%);
-    text-align:center;
-  }
-
-  h1{
-    margin:12px 0 28px;
-    font-size:24px;
-    font-weight:800;
-  }
-
-  .field{
-    margin:18px auto;
-    width:100%;
-    text-align:right;
-  }
-
-  label{
-    display:inline-block;
-    font-size:14px;
-    margin-bottom:8px;
-  }
-
-  .input-wrap{
-    position:relative;
-    background:var(--card);
-    border-radius:24px;
-    box-shadow:var(--shadow);
-  }
-
-  input{
-    width:100%;
-    border:0;
-    outline:0;
-    background:transparent;
-    padding:16px 48px 16px 20px;
-    font-size:15px;
-    border-radius:24px;
-  }
-
-  .toggle{
-    position:absolute;
-    top:50%;
-    inset-inline-start:14px;
-    transform:translateY(-50%);
-    width:22px;height:22px;
-    color:#6d28d9;
-    cursor:pointer;
-    background:none;
-    border:none;
-    padding:0;
-  }
+  main{flex:1;display:grid;place-items:center;padding:20px;}
+  .card{width:min(480px, 100%);text-align:center;}
+  h1{margin:12px 0 28px;font-size:24px;font-weight:800;}
+  .field{margin:18px auto;width:100%;text-align:right;}
+  label{display:inline-block;font-size:14px;margin-bottom:8px;}
+  .input-wrap{position:relative;background:var(--card);border-radius:24px;box-shadow:var(--shadow);}
+  input{width:100%;border:0;outline:0;background:transparent;padding:16px 48px 16px 20px;font-size:15px;border-radius:24px;}
+  .toggle{position:absolute;top:50%;inset-inline-start:14px;transform:translateY(-50%);width:22px;height:22px;color:#6d28d9;cursor:pointer;background:none;border:none;padding:0;}
   .toggle svg{display:block}
-
-  .btn{
-    margin:24px auto 0;
-    width:100%;
-    border:0;
-    color:#fff;
-    font-weight:800;
-    padding:14px 20px;
-    border-radius:26px;
-    cursor:pointer;
-    background:linear-gradient(90deg, var(--purple2), var(--purple1));
-    box-shadow:0 6px 18px rgba(76,29,149,.35);
-    transition:transform .08s ease, filter .15s ease;
-    font-size:16px;
-  }
-  .btn:hover{filter:brightness(1.03)}
-  .btn:active{transform:translateY(1px)}
-
-  footer{
-    background:#1f2937;
-    color:#fff;
-    text-align:center;
-    padding:14px;
-    font-size:13px;
-  }
+  .btn{margin:24px auto 0;width:100%;border:0;color:#fff;font-weight:800;padding:14px 20px;border-radius:26px;cursor:pointer;
+       background:linear-gradient(90deg,var(--purple2),var(--purple1));box-shadow:0 6px 18px rgba(76,29,149,.35);transition:transform .08s ease, filter .15s ease;font-size:16px;}
+  .btn:hover{filter:brightness(1.03)}.btn:active{transform:translateY(1px)}
+  footer{background:#1f2937;color:#fff;text-align:center;padding:14px;font-size:13px;}
 </style>
 </head>
 <body>
-  <!-- الشعار -->
   <header>
     <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663155633084/bGikwtyATlwcCCzm.jpg" alt="الشعار">
   </header>
-
   <main>
     <div class="card" aria-labelledby="title">
       <h1 id="title">قم بتسجيل الدخول إلى حسابك</h1>
-
       <div class="field">
         <label for="user">اسم المستخدم/البريد الإلكتروني</label>
-        <div class="input-wrap">
-          <input id="user" type="text" autocomplete="username" />
-        </div>
+        <div class="input-wrap"><input id="user" type="text" autocomplete="username" /></div>
       </div>
-
       <div class="field">
         <label for="pass">كلمة المرور</label>
         <div class="input-wrap">
           <input id="pass" type="password" autocomplete="current-password" />
-          <button class="toggle" type="button" aria-label="إظهار/إخفاء كلمة المرور">
-            <svg id="eye" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-              <path d="M12 5c7.5 0 10.5 7 10.5 7s-3 7-10.5 7S1.5 12 1.5 12 4.5 5 12 5Zm0 3.5A3.5 3.5 0 1 0 12 16a3.5 3.5 0 0 0 0-7Z"/>
-            </svg>
-          </button>
+          <button class="toggle" type="button"><svg id="eye" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 5c7.5 0 10.5 7 10.5 7s-3 7-10.5 7S1.5 12 1.5 12 4.5 5 12 5Zm0 3.5A3.5 3.5 0 1 0 12 16a3.5 3.5 0 0 0 0-7Z"/></svg></button>
         </div>
       </div>
-
       <button class="btn" id="loginBtn" type="button">تسجيل الدخول</button>
     </div>
   </main>
-
-  <!-- التذييل -->
-  <footer>
-    © جميع الحقوق محفوظة 2025 • البوابة الإلكترونية
-  </footer>
-
+  <footer>© جميع الحقوق محفوظة 2025 • البوابة الإلكترونية</footer>
 <script>
-  const pass = document.getElementById('pass');
-  const toggle = document.querySelector('.toggle');
-  const eye = document.getElementById('eye');
-
-  toggle.addEventListener('click', () => {
-    const show = pass.type === 'password';
-    pass.type = show ? 'text' : 'password';
-    eye.innerHTML = show
-      ? '<path d="M3 12s3-7 9-7 9 7 9 7-3 7-9 7-9-7-9-7Zm9-3a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/>'
-      : '<path d="M12 5c7.5 0 10.5 7 10.5 7s-3 7-10.5 7S1.5 12 1.5 12 4.5 5 12 5Zm0 3.5A3.5 3.5 0 1 0 12 16a3.5 3.5 0 0 0 0-7Z"/>';
-  });
-
-  // عند الضغط على تسجيل الدخول → الانتقال إلى الصفحة الثالثة
-  document.getElementById("loginBtn").addEventListener("click", ()=>{
-    window.location.href = "third.html";
-  });
-
-  // منع إدخال الأحرف العربية
-  document.querySelectorAll("input").forEach(inp=>{
-    inp.addEventListener("input", ()=>{
-      inp.value = inp.value.replace(/[\u0600-\u06FF]/g, "");
-    });
-  });
+  document.getElementById("loginBtn").addEventListener("click",()=>{window.location.href="third.html";});
 </script>
 </body>
 </html>
