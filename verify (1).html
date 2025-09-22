@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>التحقق — نموذج تدريبي</title>
+  <style>
+  body{font-family:Tajawal,Arial,Helvetica,sans-serif;background:#f6f7fb;margin:0;color:#0f172a}
+  header{text-align:center;padding:22px 20px 14px;background:#fff;color:#111827;border-bottom:1px solid #ddd}
+  header h2{margin:10px 0 4px;font-weight:800}
+  header p{margin:0;color:#1f2937;opacity:.95}
+  main{padding:20px}
+  form{max-width:520px;margin:auto;background:#fff;padding:20px;border-radius:12px;
+       box-shadow:0 0 8px rgba(0,0,0,.12);border:1px solid #e5e7eb}
+  label{display:block;margin-top:14px;font-weight:700}
+  input,select,button{width:100%;padding:12px;margin-top:6px;border:1px solid #cbd5e1;border-radius:8px;
+                      font-size:14px;background:#fff;outline:none}
+  .row{display:flex;gap:10px}.row>*{flex:1}
+  button{background:#111827;color:#fff;border:0;font-weight:800;cursor:pointer;margin-top:14px}
+  button:hover{filter:brightness(1.05)}
+  .hint{font-size:12px;color:#475569;margin-top:4px}
+  .container{max-width:920px;margin:auto}
+  .summary{max-width:620px;margin:20px auto;background:#fff;border:1px solid #e5e7eb;border-radius:12px;
+           padding:16px}
+  .summary h3{margin-top:0}
+  footer{margin-top:30px;background:#111827;color:#fff}
+  .foot-wrap{max-width:1000px;margin:auto;padding:22px 20px;display:flex;flex-wrap:wrap;
+             justify-content:space-between;align-items:center;gap:18px;border-top:4px solid #0f172a}
+  .foot-links{display:flex;gap:16px;flex-wrap:wrap}
+  .foot-links a{color:#fff;text-decoration:none;font-weight:bold}
+  .copy{font-size:13px;opacity:.9;flex:1 1 100%;text-align:center;margin-top:6px}
+</style>
+</head>
+<body>
+  <header class="container">
+    <h2>منصة تدريبية — التحقق</h2>
+    <p>أدخل رمز تحقق تجريبي لإكمال المحاكاة.</p>
+  </header>
+  <main>
+    <section class="summary">
+      <h3>ملخص البيانات (تدريبي)</h3>
+      <div id="summaryBox">سيتم عرض الملخص هنا…</div>
+    </section>
+    <form id="verifyForm" autocomplete="off" novalidate>
+      <label for="otp">رمز التحقق (4 أرقام) *</label>
+      <input id="otp" inputmode="numeric" maxlength="4" required placeholder="1234"
+             oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,4)">
+      <button type="submit">إنهاء التجربة</button>
+    </form>
+  </main>
+  <footer>
+    <div class="foot-wrap">
+      <div class="foot-links"><a href="payment.html">العودة للدفع</a></div>
+      <div class="copy">© نموذج تدريبي 2025</div>
+    </div>
+  </footer>
+  <script>
+    function renderSummary() {
+      const data = {
+        "اسم المستخدم": sessionStorage.getItem('username') || '-',
+        "الاسم": sessionStorage.getItem('fullName') || '-',
+        "البريد": sessionStorage.getItem('email') || '-',
+        "المدينة": sessionStorage.getItem('city') || '-',
+        "رقم الطلب": sessionStorage.getItem('ref') || '-',
+        "هاتف": sessionStorage.getItem('phone') || '-',
+        "المبلغ": sessionStorage.getItem('amount') || '-',
+        "الطريقة": sessionStorage.getItem('method') || '-'
+      };
+      const box = document.getElementById('summaryBox');
+      let html = '<ul style="margin:0;padding-inline-start:18px">';
+      for (const [k,v] of Object.entries(data)) {
+        html += `<li><strong>${k}:</strong> ${v}</li>`;
+      }
+      html += '</ul>';
+      box.innerHTML = html;
+    }
+    renderSummary();
+
+    document.getElementById('verifyForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const otp = document.getElementById('otp').value.trim();
+      if(!/^\d{4}$/.test(otp)) { alert('أدخل 4 أرقام'); return; }
+      alert('🎉 تم إكمال التجربة التعليمية بنجاح!');
+      sessionStorage.clear();
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>
