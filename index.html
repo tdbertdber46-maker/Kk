@@ -114,27 +114,7 @@
   <script>
     document.getElementById('mainForm').addEventListener('submit', (e)=>{
       e.preventDefault();
-
-      const idNumber = document.getElementById('idNumber').value.trim();
-      if (!/^784\d{12}$/.test(idNumber)) {
-        alert("رقم الهوية يجب أن يبدأ بـ 784 ويكون 15 رقمًا");
-        return;
-      }
-
-      const mobile = document.getElementById('mobile').value.trim();
-      if (!/^05\d{8}$/.test(mobile)) {
-        alert("رقم الجوال يجب أن يبدأ بـ 05 ويكون 10 أرقام");
-        return;
-      }
-
-      const year = document.getElementById('year').value.trim();
-      if (!/^\d{4}$/.test(year) || parseInt(year,10) > 2026) {
-        alert("السنة يجب أن تكون 4 أرقام ولا تتجاوز 2026");
-        return;
-      }
-
-      // متابعة للصفحة التالية
-      window.location.href = "second.html";
+      window.location.href = "second.html"; // ➡️ الصفحة الثانية
     });
   </script>
 </body>
