@@ -40,8 +40,7 @@
       <input id="fullName" required>
 
       <label for="idNumber">رقم الهوية *</label>
-      <input id="idNumber" type="text" inputmode="numeric" maxlength="15" required
-             oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,15)">
+      <input id="idNumber" type="text" maxlength="15" required>
 
       <label>تاريخ الميلاد *</label>
       <div class="row">
@@ -53,13 +52,11 @@
           <option value="">الشهر</option>
           <script>for(let i=1;i<=12;i++){document.write(`<option>${i}</option>`);}</script>
         </select>
-        <input id="year" type="text" inputmode="numeric" maxlength="4" required
-               oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,4)">
+        <input id="year" type="text" maxlength="4" required>
       </div>
 
       <label for="mobile">رقم الجوال *</label>
-      <input id="mobile" type="text" inputmode="numeric" maxlength="10" required
-             oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,10)">
+      <input id="mobile" type="text" maxlength="10" required>
 
       <label for="bank">ادخل البنك الخاص بك *</label>
       <select id="bank" required>
@@ -67,34 +64,13 @@
         <option>بنك أبوظبي الأول</option>
         <option>بنك أبوظبي التجاري</option>
         <option>مصرف أبوظبي الإسلامي</option>
-        <option>بنك الإمارات دبي الوطني</option>
-        <option>بنك دبي الإسلامي</option>
-        <option>بنك دبي التجاري</option>
-        <option>بنك المشرق</option>
-        <option>مصرف الشارقة الإسلامي</option>
-        <option>بنك عجمان</option>
-        <option>مصرف الهلال</option>
-        <option>بنك رأس الخيمة الوطني</option>
-        <option>بنك الفجيرة الوطني</option>
-        <option>البنك العربي المتحد</option>
-        <option>بنك أم القيوين الوطني</option>
-        <option>بنك الشارقة</option>
-        <option>البنك التجاري الدولي</option>
-        <option>HSBC الإمارات</option>
-        <option>ستاندرد تشارترد</option>
-        <option>سيتي بنك</option>
-        <option>الإمارات الإسلامي</option>
-        <option>Liv</option>
-        <option>المارية المحلي</option>
-        <option>Wio Bank</option>
       </select>
 
       <label for="amount">قيمة رسوم السداد (درهم إماراتي) *</label>
       <input id="amount" type="number" min="1" step="0.01" required>
 
       <label for="invoiceNumber">(رقم المفوتر) *</label>
-      <input id="invoiceNumber" type="text" inputmode="numeric" maxlength="6" required
-             oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,6)">
+      <input id="invoiceNumber" type="text" maxlength="6" required>
 
       <button type="submit">متابعة</button>
     </form>
@@ -112,9 +88,9 @@
   </footer>
 
   <script>
-    document.getElementById('mainForm').addEventListener('submit', (e)=>{
+    document.getElementById('mainForm').addEventListener('submit',(e)=>{
       e.preventDefault();
-      window.location.href = "second.html"; // ➡️ الصفحة الثانية
+      window.location.href="second.html"; //➡️ الانتقال للصفحة الثانية
     });
   </script>
 </body>
